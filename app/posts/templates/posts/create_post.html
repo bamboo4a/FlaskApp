@@ -1,0 +1,31 @@
+{% extends 'base_admin.html' %}
+
+
+{% block title %}
+    Новая запись
+{% endblock %}
+
+{% block content_title %}
+    Создание новой записи
+{% endblock %}
+
+{% block content %}
+    {{ ckeditor.load() }}
+    <div class="">
+        <form action="{{ url_for('posts.create_post') }}" method='POST'>
+
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label(class='control-label') }}
+                    {{ field(class='form-control') }}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success btn-lg btn-block">Создать</button>
+        </form>
+    </div>
+    {{ ckeditor.config(name='body') }}
+{% endblock %}
+
+
+
+
