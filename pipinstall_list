@@ -10,3 +10,4 @@ pip install flask-admin
 pip install flask-security
 pip install email_validator
 pip install flask-ckeditor
+
