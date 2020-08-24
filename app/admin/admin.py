@@ -2,7 +2,8 @@ from flask_admin.contrib.sqla import ModelView
 from flask_admin import AdminIndexView
 from flask_security import current_user
 from flask import redirect, url_for, request
-from posts.wysiwyg import CKTextAreaField
+from flask_ckeditor import CKEditorField
+from wtforms.validators import DataRequired, Length
 
 
 class AdminMixin:
@@ -29,8 +30,8 @@ class HomeAdminView(AdminMixin, AdminIndexView):
 
 class PostAdminView(AdminMixin, BaseModelView):
     form_columns = ['title', 'body']
-    extra_js = ['https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js']
-    form_overrides = dict(body=CKTextAreaField)
+    form_overrides = dict(body=CKEditorField)
+
 
 
 class TagAdminView(AdminMixin, BaseModelView):

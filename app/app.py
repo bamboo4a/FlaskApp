@@ -9,7 +9,7 @@ from flask_security import SQLAlchemyUserDatastore
 from flask_security import Security
 from admin.admin import *
 from flask_babelex import Babel
-
+from flask_ckeditor import CKEditor
 
 # app
 app = Flask(__name__)
@@ -36,4 +36,6 @@ admin.add_view(TagAdminView(Tag, db.session))
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(app, user_datastore)
 
+# CKEditor
 
+ckeditor = CKEditor(app)
