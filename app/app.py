@@ -27,7 +27,9 @@ manager.add_command('db', MigrateCommand)
 
 # ADMIN
 from models import *
-admin = Admin(app, 'На главную', url='/', index_view=HomeAdminView(name='Home'))
+admin = Admin(app, 'На главную',
+              url='/', index_view=HomeAdminView(name='Стартовая'),
+              template_mode='bootstrap3')
 admin.add_view(PostAdminView(Post, db.session))
 admin.add_view(TagAdminView(Tag, db.session))
 

@@ -47,7 +47,7 @@ class Tag(db.Model):
             self.slug = my_slugify(self.name)
 
     def __repr__(self):
-        return '<Tag id: {}, Tag name: {}>'.format(self.id, self.name)
+        return '{}'.format(self.name)
 
 
 # FLASK SECURITY

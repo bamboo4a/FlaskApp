@@ -20,6 +20,7 @@ class BaseModelView(ModelView):
         return super(BaseModelView, self).on_model_change(form, model, is_created)
 
 
+
 class AdminView(AdminMixin, ModelView):
     pass
 
@@ -29,10 +30,40 @@ class HomeAdminView(AdminMixin, AdminIndexView):
 
 
 class PostAdminView(AdminMixin, BaseModelView):
-    form_columns = ['title', 'body']
+    form_columns = ['title', 'tags', 'body']
+    column_searchable_list = ('title',)
+    column_default_sort = ('created', True)
     form_overrides = dict(body=CKEditorField)
+    form_args = {
+        'title': {
+            'label': 'Заголовок',
+            'validators': [Length(min=5, max=140)]
+        },
+        'body': {
+            'label': 'Текст',
+            'validators': [DataRequired()]
+        },
+        'tags': {
+            'label': 'Тег',
+            'validators': []
+        }
+    }
+
+    # Вывод первых 20 символов в поле 'body'
+    def _body_formatter(view, context, model, name):
+        return model.body[:20]
+
+    column_formatters = {
+        'body': _body_formatter,
+    }
+
 
 
 
 class TagAdminView(AdminMixin, BaseModelView):
     form_columns = ['name']
+    form_args = {
+        'name': {
+            'label': 'Название'
+        }
+    }
