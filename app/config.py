@@ -1,7 +1,6 @@
-import os
+from pathlib import Path
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-
+basedir = Path(__file__).resolve().parent
 
 class Configuration(object):
     DEBUG = True
@@ -18,4 +17,5 @@ class Configuration(object):
     CKEDITOR_SERVE_LOCAL = True
     CKEDITOR_FILE_UPLOADER = 'upload'
     # CKEDITOR_ENABLE_CSRF = True  # if you want to enable CSRF protect, uncomment this line
-    UPLOADED_PATH = os.path.join(basedir, 'uploads')
+    # UPLOADED_PATH = os.path.join(basedir, 'uploads')
+    UPLOADED_PATH = basedir.joinpath('uploads')

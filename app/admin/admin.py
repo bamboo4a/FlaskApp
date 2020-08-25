@@ -20,7 +20,6 @@ class BaseModelView(ModelView):
         return super(BaseModelView, self).on_model_change(form, model, is_created)
 
 
-
 class AdminView(AdminMixin, ModelView):
     pass
 
@@ -49,6 +48,7 @@ class PostAdminView(AdminMixin, BaseModelView):
         }
     }
 
+
     # Вывод первых 20 символов в поле 'body'
     def _body_formatter(view, context, model, name):
         return model.body[:20]
@@ -56,8 +56,6 @@ class PostAdminView(AdminMixin, BaseModelView):
     column_formatters = {
         'body': _body_formatter,
     }
-
-
 
 
 class TagAdminView(AdminMixin, BaseModelView):
