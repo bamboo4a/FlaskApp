@@ -48,7 +48,6 @@ class PostAdminView(AdminMixin, BaseModelView):
         }
     }
 
-
     # Вывод первых 20 символов в поле 'body'
     def _body_formatter(view, context, model, name):
         return model.body[:20]

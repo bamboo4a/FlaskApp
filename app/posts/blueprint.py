@@ -83,7 +83,7 @@ def index():
     else:
         posts = Post.query.order_by(Post.created.desc())
 
-    return render_template('posts/index.html', posts=posts)
+    return render_template('posts/index1.html', posts=posts)
 
 
 @posts.route('/<slug>')
