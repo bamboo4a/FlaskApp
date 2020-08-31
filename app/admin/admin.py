@@ -29,7 +29,7 @@ class HomeAdminView(AdminMixin, AdminIndexView):
 
 
 class PostAdminView(AdminMixin, BaseModelView):
-    form_columns = ['title', 'tags', 'body']
+    form_columns = ['title', 'tags', 'body', 'img_card']
     column_searchable_list = ('title',)
     column_default_sort = ('created', True)
     form_overrides = dict(body=CKEditorField)

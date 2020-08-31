@@ -1,11 +1,12 @@
 import os
 
+
 class Configuration(object):
     # App
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root:###@localhost/test'
+    SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root:microlab0315@localhost/test'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = '####'
+    SECRET_KEY = 'very-very-secret'
 
     # FLASK-SECURITY
     SECURITY_PASSWORD_SALT = 'salt'
@@ -17,5 +18,5 @@ class Configuration(object):
     CKEDITOR_FILE_UPLOADER = 'upload'
 
     # Cloudinary
-    os.environ['CLOUDINARY_URL'] = '########'
+    os.environ['CLOUDINARY_URL'] = 'cloudinary://738984218937694:bApnKtj-euViBrjXguBe7qQRlTc@ddej6pufd'
     CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')

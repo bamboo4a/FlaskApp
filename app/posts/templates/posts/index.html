@@ -11,10 +11,11 @@
 {% block content %}
     <div class="row row-cols-1 row-cols-md-4">
     {% for post in posts %}
+        {% if post.img_card %}
             <div class="col mb-4">
               <a href="{{ url_for('posts.post_detail', slug=post.slug) }}">
                 <div class="card h-100" style="width: 18rem; margin: 0 auto;">
-                  <img src="" class="card-img-top" height="230" alt="фото">
+                  <img src="{{ post.img_card }}" class="card-img-top " height="230" alt="фото">
                     <div class="card-body" style="margin-top: 0px;">
                       <h5 class="card-title">{{ post.title }}</h5>
 <!--                      <p class="card-text">CoCojambo</p>-->
@@ -25,6 +26,22 @@
                 </div>
               </a>
             </div>
+        {% else %}
+            <div class="col mb-4">
+              <a href="{{ url_for('posts.post_detail', slug=post.slug) }}">
+                <div class="card h-100" style="width: 18rem; margin: 0 auto;">
+                  <img src="" class="card-img-top" height="230" alt="фото">
+                    <div class="card-body" style="margin-top: 0px;">
+                      <h5 class="card-title">{{ post.title[:13] + "..." }}</h5>
+<!--                      <p class="card-text">CoCojambo</p>-->
+                      <div class="card-footer" style="margin-bottom: 0px;">
+                        <small class="text-muted">{{ post.created }}</small>
+                      </div>
+                    </div>
+                </div>
+              </a>
+            </div>
+        {% endif %}
     {% endfor %}
     </div>
 {% endblock %}

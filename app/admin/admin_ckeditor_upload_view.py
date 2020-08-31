@@ -1,10 +1,6 @@
 from app import app
 from flask import send_from_directory, request, url_for
 from flask_ckeditor import upload_fail, upload_success
-import os
-from pathlib import Path
-from datetime import datetime
-from config import Configuration
 # ___________________________
 from cloudinary.uploader import upload as up_to_cloud
 from cloudinary.utils import cloudinary_url

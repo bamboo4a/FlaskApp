@@ -17,6 +17,7 @@ class Post(db.Model):
     slug = db.Column(db.String(140), unique=True)
     body = db.Column(db.Text)
     created = db.Column(db.DateTime, default=datetime.now)
+    img_card = db.Column(db.String(250), default=None)
 
     def __init__(self, *args, **kwargs):
         super(Post, self).__init__(*args, **kwargs)
