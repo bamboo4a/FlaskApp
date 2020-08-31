@@ -1,8 +1,7 @@
-from pathlib import Path
-
-basedir = Path(__file__).resolve().parent
+import os
 
 class Configuration(object):
+    # App
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root:microlab0315@localhost/test'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -16,6 +15,7 @@ class Configuration(object):
     # CKEditor
     CKEDITOR_SERVE_LOCAL = True
     CKEDITOR_FILE_UPLOADER = 'upload'
-    # CKEDITOR_ENABLE_CSRF = True  # if you want to enable CSRF protect, uncomment this line
-    # UPLOADED_PATH = os.path.join(basedir, 'uploads')
-    UPLOADED_PATH = basedir.joinpath('uploads')
+
+    # Cloudinary
+    os.environ['CLOUDINARY_URL'] = 'cloudinary://738984218937694:bApnKtj-euViBrjXguBe7qQRlTc@ddej6pufd'
+    CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')

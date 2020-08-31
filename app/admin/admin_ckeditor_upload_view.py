@@ -5,33 +5,17 @@ import os
 from pathlib import Path
 from datetime import datetime
 from config import Configuration
-
-
-def get_path():
-    time_now = datetime.now()
-    path = Path.joinpath(Configuration.UPLOADED_PATH, str(time_now.year)[:2], str(time_now.month), str(time_now.day))
-    return path
-
-
-@app.route('/files/<filename>')
-def uploaded_files(filename):
-    path = get_path()
-    return send_from_directory(path, filename)
+# ___________________________
+from cloudinary.uploader import upload as up_to_cloud
+from cloudinary.utils import cloudinary_url
 
 
 @app.route('/upload', methods=['POST'])
 def upload():
-    f = request.files.get('upload')
+    f = request.files['upload']
     extension = f.filename.split('.')[-1].lower()
-    if extension not in ['jpg', 'gif', 'png', 'jpeg']:
+    if extension not in ['jpg', 'gif', 'png', 'jpeg', 'webp']:
         return upload_fail(message='Image only!')
-
-    # получение адреса
-    directory_now = get_path()
-    if not directory_now.exists():
-        directory_now.mkdir(parents=True, exist_ok=True)
-    f.save(Path.joinpath(directory_now, f.filename))
-    url = url_for('uploaded_files', filename=f.filename)
+    result = up_to_cloud(f)
+    url = result['url']
     return upload_success(url=url)
-
-

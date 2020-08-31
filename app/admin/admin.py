@@ -36,7 +36,7 @@ class PostAdminView(AdminMixin, BaseModelView):
     form_args = {
         'title': {
             'label': 'Заголовок',
-            'validators': [Length(min=5, max=140)]
+            'validators': [DataRequired(), Length(min=5, max=140)]
         },
         'body': {
             'label': 'Текст',

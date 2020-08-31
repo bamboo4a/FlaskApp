@@ -71,19 +71,15 @@ def edit_post(slug):
 #     return render_template('posts/edit_post_mol4anov.html', post=post, form=form)
 
 
-
-
 @posts.route('/')
 def index():
-
     q = request.args.get('q')
-
     if q:
         posts = Post.query.filter(Post.title.contains(q) | Post.body.contains(q)).all()
     else:
         posts = Post.query.order_by(Post.created.desc())
 
-    return render_template('posts/index1.html', posts=posts)
+    return render_template('posts/index.html', posts=posts)
 
 
 @posts.route('/<slug>')
